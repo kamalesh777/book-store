@@ -3,10 +3,13 @@ const mongoose = require('mongoose');
 const productRoutes = require('./routes/product');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
+const cors = require('cors');
+
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 const MONGO_URI = "mongodb+srv://ksmaity777:12345@book-store-cluster.lqnljco.mongodb.net/store"
 // Connect MongoDB
