@@ -20,6 +20,9 @@ mongoose.connect(process.env.MONGODB_URI || MONGO_URI, {
 // Routes
 app.use('/api/products', productRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+    customCssUrl: [
+        'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.25.2/swagger-ui.css',
+    ],
     customCss: '.swagger-ui .topbar { display: none }',
     customSiteTitle: 'Bookstore API',
     customfavIcon: '/favicon.ico', // if you have one
