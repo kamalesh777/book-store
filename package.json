@@ -1,0 +1,21 @@
+{
+  "name": "book-store",
+  "version": "1.0.0",
+  "description": "A book store api",
+  "license": "MIT",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^7.0.3",
+    "nodemon": "^3.1.10",
+    "swagger-jsdoc": "^6.0.0",
+    "swagger-ui-express": "^4.1.6"
+  }
+}
