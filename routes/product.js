@@ -29,9 +29,9 @@ router.post('/', async (req, res) => {
   try {
     const product = new Product(req.body);
     await product.save();
-    res.status(201).json(product);
+    res.status(201).json({message: 'Product created successfully', success: true, result: product});
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(400).json({ error: err.message, success: false, result: null });
   }
 });
 
@@ -48,9 +48,9 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const products = await Product.find();
-    res.json(products);
+    res.json({message: 'Products fetched successfully', success: true, result: products});
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message, success: false, result: null });
   }
 });
 
@@ -71,10 +71,10 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    if (!product) return res.status(404).json({ error: 'Not found' });
-    res.json(product);
+    if (!product) return res.status(404).json({ error: 'Not found', success: false, result: null });
+    res.json({message: 'Product fetched successfully', success: true, result: product});
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message, success: false, result: null });
   }
 });
 
@@ -105,10 +105,10 @@ router.patch('/:id', async (req, res) => {
       { $set: req.body },
       { new: true }
     );
-    if (!product) return res.status(404).json({ error: 'Not found' });
-    res.json(product);
+    if (!product) return res.status(404).json({ error: 'Not found', success: false, result: null });
+    res.json({message: 'Product updated successfully', success: true, result: product});
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(400).json({ error: err.message, success: false, result: null });
   }
 });
 
@@ -129,10 +129,10 @@ router.patch('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
-    if (!product) return res.status(404).json({ error: 'Not found' });
-    res.json({ message: 'Deleted successfully' });
+    if (!product) return res.status(404).json({ error: 'Not found', success: false, result: null });
+    res.json({message: 'Product deleted successfully', success: true, result: product});
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message, success: false, result: null });
   }
 });
 
